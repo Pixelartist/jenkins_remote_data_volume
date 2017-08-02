@@ -1,14 +1,10 @@
 Jenkinsfile (Declarative Pipeline)
 pipeline {
-    agent any
+    agent { docker 'php' }
     stages {
-        stage('Build') {
+        stage('build') {
             steps {
-                sh 'echo "Hello World"'
-                sh '''
-                    echo "Multiline shell steps works too"
-                    ls -lah
-                '''
+                sh 'php --version'
             }
         }
     }
