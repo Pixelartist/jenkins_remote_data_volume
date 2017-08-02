@@ -1,4 +1,4 @@
-Jenkinsfile (Declarative Pipeline)
+
 pipeline {
     agent { docker 'php' }
     stages {
