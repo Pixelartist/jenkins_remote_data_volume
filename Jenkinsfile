@@ -12,7 +12,7 @@ pipeline {
             withCredentials([usernamePassword(credentialsId: 'pentaho_root_main', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
             // available as an env variable, but will be masked if you try to print it out any which way
             sh '''
-              ssh -i ~/.ssh/id_rsa root@37.120.174.211 -p 7777 mkdir /home/test2
+              ssh -i ~/.ssh/id_rsa root@37.120.174.211 -p 7777 /opt/pentaho/pan.sh -rep:"Test" -trans:"src2ext/transformation" -dir:"/"
             '''
 
             }
