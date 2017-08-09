@@ -7,9 +7,14 @@ pipeline {
                 sh 'echo Step1 in Prep'
             }
         }
-        stage('build') {
+        stage('execute') {
             steps {
-                sh 'echo Step1 in Build'
+            withCredentials([usernamePassword(credentialsId: 'pentaho_root_main', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+            // available as an env variable, but will be masked if you try to print it out any which way
+            sh 'echo $PASSWORD'
+            }
+                sh 'echo Step outside password'
+                sh 'echo $PASSWORD'
             }
         }
     }
