@@ -11,9 +11,14 @@ pipeline {
             steps {
             withCredentials([usernamePassword(credentialsId: 'pentaho_root_main', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
             // available as an env variable, but will be masked if you try to print it out any which way
-            sh 'echo uname=$USERNAME pwd=$PASSWORD'
-            sh 'foo=$USERNAME$PASSWORD'
-            sh 'echo $foo'
+            sh 'ssh uname=$USERNAME pwd=$PASSWORD'
+            sh '''
+              spawn ssh USERNAME@37.120.174.211:7777
+              expect "assword:"
+              send "$PASSWORD\r"
+              interact
+            '''
+
             }
                 sh 'echo Step outside password'
                 sh 'echo $PASSWORD'
