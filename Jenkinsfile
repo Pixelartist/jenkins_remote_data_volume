@@ -6,16 +6,13 @@ pipeline {
     }
     stages {
         stage('prep') {
-        // adding node functionality to ensure future jenkins can run on multiple nodes / parallel
             steps {
-            node{
                 sh 'echo Step1 in Prep'
                 sh 'ssh -i ~/.ssh/id_rsa root@37.120.174.211 -p 7777 git --git-dir=/opt/telecare/repo/pentaho_test/.git fetch origin'
                 sh 'ssh -i ~/.ssh/id_rsa root@37.120.174.211 -p 7777 git --git-dir=/opt/telecare/repo/pentaho_test/.git -C /opt/telecare/repo/pentaho_test/ reset --hard origin/master'
                 // adding a demo for mail notifications
                 mail bcc: '', body: 'testjenkins', cc: '', from: '', replyTo: '', subject: 'testjenkins', to: 'biothin@gmail.com'
             }
-        }
         }
         stage('execute') {
             steps {
