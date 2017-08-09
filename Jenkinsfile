@@ -5,7 +5,9 @@ pipeline {
         stage('prep') {
             steps {
                 sh 'echo Step1 in Prep'
-                sh 'ssh -i ~/.ssh/id_rsa root@37.120.174.211 -p 7777  git --git-dir=/opt/telecare/repo/pentaho_test/.git fetch origin && git --git-dir=/opt/telecare/repo/pentaho_test/.git -C /opt/telecare/repo/pentaho_test/ reset --hard origin/master'
+                sh 'ssh -i ~/.ssh/id_rsa root@37.120.174.211 -p 7777'
+                sh 'git --git-dir=/opt/telecare/repo/pentaho_test/.git fetch origin'
+                sh 'git --git-dir=/opt/telecare/repo/pentaho_test/.git -C /opt/telecare/repo/pentaho_test/ reset --hard origin/master'
             }
         }
         stage('execute') {
