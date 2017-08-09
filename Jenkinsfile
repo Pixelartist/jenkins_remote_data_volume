@@ -2,11 +2,14 @@
 pipeline {
     agent any
     stages {
+        stage('prep') {
+            steps {
+                sh 'echo Step1 in Prep'
+            }
+        }
         stage('build') {
             steps {
-                sh 'echo Step1'
-                sh 'echo Step2'
-                sh 'echo echo ... haha'
+                sh 'echo Step1 in Build'
             }
         }
     }
