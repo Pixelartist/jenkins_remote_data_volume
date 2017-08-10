@@ -17,7 +17,7 @@ pipeline {
                 mail bcc: '', body: 'testjenkins', cc: '', from: '', replyTo: '', subject: 'testjenkins', to: 'biothin@gmail.com'
             }
         }
-        stage('execute' 01) {
+        stage('execute') {
             steps {
             withCredentials([usernamePassword(credentialsId: 'pentaho_root_main', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
             // available as an env variable, but will be masked if you try to print it out any which way
