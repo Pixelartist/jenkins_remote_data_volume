@@ -4,8 +4,9 @@ pipeline {
     triggers {
         cron('0 5 * * *')
     }
+
     stages {
-        stage('prep all jobs') {
+        stage('prep') {
             steps {
                 sh 'echo Step1 in Prep'
                 sh 'ssh -i ~/.ssh/id_rsa root@37.120.174.211 -p 7777 git --git-dir=/opt/telecare/repo/pentaho_test/.git fetch origin'
