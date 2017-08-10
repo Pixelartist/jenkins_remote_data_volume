@@ -4,9 +4,6 @@ pipeline {
     triggers {
         cron('0 5 * * *')
     }
-    options {
-        timeout(time: 1, unit: 'HOURS')
-    }
     stages {
         stage('prep all jobs') {
             steps {
