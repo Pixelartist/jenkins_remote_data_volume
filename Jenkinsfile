@@ -36,12 +36,15 @@ pipeline {
 pipeline {
     agent any
     triggers {
-        cron('0 5 * * *')
+        cron('*/5 * * * *')
+    }
+    options {
+        timeout(time: 1, unit: 'HOURS')
     }
     stages {
         stage('Prepare') {
             steps {
-                sh 'echo Step1 in Prep'
+                sh 'echo execute second job with own trigger'
             }
         }
         stage('Execute') {
