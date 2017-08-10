@@ -29,3 +29,23 @@ pipeline {
         }
     }
 }
+
+pipeline {
+    agent any
+    triggers {
+        cron('0 5 * * *')
+    }
+    stages {
+        stage('prep') {
+            steps {
+                sh 'echo Step1 in Prep'
+            }
+        }
+        stage('execute') {
+            steps {
+                sh 'echo Step outside password'
+                sh 'echo $PASSWORD'
+            }
+        }
+    }
+}
