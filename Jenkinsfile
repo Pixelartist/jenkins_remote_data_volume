@@ -32,26 +32,3 @@ pipeline {
         }
     }
 }
-
-pipeline {
-    agent any
-    triggers {
-        cron('*/5 * * * *')
-    }
-    options {
-        timeout(time: 1, unit: 'HOURS')
-    }
-    stages {
-        stage('Prepare') {
-            steps {
-                sh 'echo execute second job with own trigger'
-            }
-        }
-        stage('Execute') {
-            steps {
-                sh 'echo Step outside password'
-                sh 'echo $PASSWORD'
-            }
-        }
-    }
-}
