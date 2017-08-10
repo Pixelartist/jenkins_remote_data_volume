@@ -17,7 +17,7 @@ pipeline {
                 mail bcc: '', body: 'testjenkins', cc: '', from: '', replyTo: '', subject: 'testjenkins', to: 'biothin@gmail.com'
             }
         }
-        stage('execute') {
+        stage('execute' 01) {
             steps {
             withCredentials([usernamePassword(credentialsId: 'pentaho_root_main', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
             // available as an env variable, but will be masked if you try to print it out any which way
@@ -42,13 +42,22 @@ pipeline {
         timeout(time: 1, unit: 'HOURS')
     }
     stages {
-        stage('prep') {
+        stage('prep 02') {
             steps {
                 sh 'echo Step1 in Prep'
             }
         }
-        stage('execute') {
+        stage('execute 02') {
             steps {
+
+              try {
+                          sh 'exit 1'
+                      }
+                      catch (exc) {
+                          echo 'Something failed, I should sound the klaxons!'
+                          throw
+                      }
+
                 sh 'echo Step outside password'
                 sh 'echo $PASSWORD'
             }
