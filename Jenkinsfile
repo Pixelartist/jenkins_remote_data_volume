@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Prepare') {
             steps {
-                sh 'echo Step1 in Prep'
+                sh 'echo Step1 in Prep in test'
                 sh 'ssh -i ~/.ssh/id_rsa root@37.120.174.211 -p 7777 git --git-dir=/opt/telecare/repo/pentaho_test/.git fetch origin'
                 sh 'ssh -i ~/.ssh/id_rsa root@37.120.174.211 -p 7777 git --git-dir=/opt/telecare/repo/pentaho_test/.git -C /opt/telecare/repo/pentaho_test/ reset --hard origin/master'
                 // adding a demo for mail notifications
