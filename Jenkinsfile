@@ -48,7 +48,7 @@ pipeline {
             }
         }
         stage('execute 02') {
-            steps {
+          
 
               try {
                           sh 'exit 1'
@@ -60,7 +60,7 @@ pipeline {
 
                 sh 'echo Step outside password'
                 sh 'echo $PASSWORD'
-            }
+
         }
     }
 }
